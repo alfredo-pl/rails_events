@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>People:</strong>
+  <%= @conciert.people %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @conciert.duration %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @conciert.date %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @conciert.group_id %>
+</p>
+
+<%= link_to 'Edit', edit_conciert_path(@conciert) %> |
+<%= link_to 'Back', concierts_path %>

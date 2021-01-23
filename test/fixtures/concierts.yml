@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  people: 1
+  duration: 2021-01-23 14:18:54
+  date: 2021-01-23
+  group: one
+
+two:
+  people: 1
+  duration: 2021-01-23 14:18:54
+  date: 2021-01-23
+  group: two
