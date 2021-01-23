@@ -15,6 +15,7 @@ class ConciertsController < ApplicationController
   # GET /concierts/new
   def new
     @conciert = Conciert.new
+    @groups = Group.all.map{ |group| [group.name, group.id]}
   end
 
   # GET /concierts/1/edit

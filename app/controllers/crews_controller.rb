@@ -15,6 +15,7 @@ class CrewsController < ApplicationController
   # GET /crews/new
   def new
     @crew = Crew.new
+    @groups = Group.all.map{ |group| [group.name, group.id]}
   end
 
   # GET /crews/1/edit
