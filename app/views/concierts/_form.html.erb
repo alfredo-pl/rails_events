@@ -1,4 +1,4 @@
-<%= form_with(model: conciert, local: true) do |form| %>
+<%= form_with(model: [@group,conciert], local: true) do |form| %>
   <% if conciert.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(conciert.errors.count, "error") %> prohibited this conciert from being saved:</h2>
@@ -24,11 +24,6 @@
   <div class="field">
     <%= form.label :date %>
     <%= form.date_select :date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :group_id %>
-    <%= form.select(:group_id, options_for_select(@groups)) %>
   </div>
 
   <div class="actions">
