@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :group_id %>
-    <%= form.text_field :group_id %>
+     <%= form.select(:group_id, options_for_select(@groups)) %>
   </div>
 
   <div class="actions">
