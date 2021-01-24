@@ -12,8 +12,8 @@ class Group < ApplicationRecord
     end
     #first date
     def date_debut
-       debut =Conciert.references(:groups).where(group_id: id).pluck :date
-       debut.first
+       debut =Conciert.references(:groups).where(group_id: id).order(date: :asc).first
+       debut.date
     end
     #quantity concierts
     def cant_concierts
