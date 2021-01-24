@@ -20,14 +20,14 @@
         <td><%= conciert.duration.strftime("%Hh:%Mm") %></td>
         <td><%= conciert.date %></td>
         <td><%= conciert.get_group_name %></td>
-        <td><%= link_to 'Show', conciert %></td>
-        <td><%= link_to 'Edit', edit_conciert_path(conciert) %></td>
-        <td><%= link_to 'Destroy', conciert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', group_conciert_path(@group, conciert) %></td>
+        <td><%= link_to 'Edit', edit_group_conciert_path(@group, conciert) %></td>
+        <td><%= link_to 'Destroy', group_conciert_path(@group, conciert), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Conciert', new_conciert_path %>
+<%= link_to 'Back', group_path(@group) %>
+<%= link_to 'New Conciert', new_group_conciert_path(@group) %>

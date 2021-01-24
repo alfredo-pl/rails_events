@@ -2,5 +2,5 @@
 
 <%= render 'form', conciert: @conciert %>
 
-<%= link_to 'Show', @conciert %> |
-<%= link_to 'Back', concierts_path %>
+<%= link_to 'Show', group_conciert_path(@group,@conciert) %> |
+<%= link_to 'Back', group_concierts_path(@group) %>

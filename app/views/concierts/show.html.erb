@@ -20,5 +20,5 @@
   <%= @conciert.group_id %>
 </p>
 
-<%= link_to 'Edit', edit_conciert_path(@conciert) %> |
-<%= link_to 'Back', concierts_path %>
+<%= link_to 'Edit', edit_group_conciert_path(@group,@conciert) %> |
+<%= link_to 'Back',group_concierts_path(@group)%>
