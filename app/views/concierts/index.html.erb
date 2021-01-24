@@ -17,9 +17,9 @@
     <% @concierts.each do |conciert| %>
       <tr>
         <td><%= conciert.people %></td>
-        <td><%= conciert.duration %></td>
+        <td><%= conciert.duration.strftime("%Hh:%Mm") %></td>
         <td><%= conciert.date %></td>
-        <td><%= conciert.group_id %></td>
+        <td><%= conciert.get_group_name %></td>
         <td><%= link_to 'Show', conciert %></td>
         <td><%= link_to 'Edit', edit_conciert_path(conciert) %></td>
         <td><%= link_to 'Destroy', conciert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
