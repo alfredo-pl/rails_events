@@ -1,8 +1,9 @@
 class Group < ApplicationRecord
     validates :name, :type_group, presence: true
     enum type_group: [:men, :women, :band]
-    has_many :concerts
-    has_many :crews
+    has_many :concierts, dependent: :destroy
+    has_many :crews, dependent: :destroy
+
     
     #methods instance
     #quantity crew
