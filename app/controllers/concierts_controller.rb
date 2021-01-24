@@ -4,32 +4,40 @@ class ConciertsController < ApplicationController
   # GET /concierts
   # GET /concierts.json
   def index
-    @concierts = Conciert.all
+    @group = Group.find params[:group_id]
+   
+    @concierts = @group.concierts
   end
 
   # GET /concierts/1
   # GET /concierts/1.json
   def show
+    @group = Group.find params[:group_id]
+    @conciert = Conciert.find(params[:id])
   end
 
   # GET /concierts/new
   def new
+    @group = Group.find params[:group_id]
     @conciert = Conciert.new
-    @groups = Group.all.map{ |group| [group.name, group.id]}
+    
   end
 
   # GET /concierts/1/edit
   def edit
+    @group = Group.find params[:group_id]
+    @conciert = Conciert.find(params[:id])
   end
 
   # POST /concierts
   # POST /concierts.json
   def create
+    @group = Group.find params[:group_id]
     @conciert = Conciert.new(conciert_params)
-
+    @conciert.group = @group
     respond_to do |format|
       if @conciert.save
-        format.html { redirect_to @conciert, notice: "Conciert was successfully created." }
+        format.html { redirect_to group_conciert_path(@group,@conciert), notice: "Conciert was successfully created." }
         format.json { render :show, status: :created, location: @conciert }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,9 +49,11 @@ class ConciertsController < ApplicationController
   # PATCH/PUT /concierts/1
   # PATCH/PUT /concierts/1.json
   def update
+    @group = Group.find params[:group_id]
+    @conciert = Conciert.find(params[:id])
     respond_to do |format|
-      if @conciert.update(conciert_params)
-        format.html { redirect_to @conciert, notice: "Conciert was successfully updated." }
+      if @conciert.update(conciert_params.merge(group: @group))
+        format.html { redirect_to group_conciert_path(@group,@conciert), notice: "Conciert was successfully updated." }
         format.json { render :show, status: :ok, location: @conciert }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,9 +65,10 @@ class ConciertsController < ApplicationController
   # DELETE /concierts/1
   # DELETE /concierts/1.json
   def destroy
+    @conciert = Conciert.find(params[:id])
     @conciert.destroy
     respond_to do |format|
-      format.html { redirect_to concierts_url, notice: "Conciert was successfully destroyed." }
+      format.html { redirect_to group_concierts_url, notice: "Conciert was successfully destroyed." }
       format.json { head :no_content }
     end
   end
