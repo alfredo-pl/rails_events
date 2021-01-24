@@ -17,13 +17,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :debut_date %>
-    <%= form.date_select :debut_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :type %>
-    <%= form.number_field :type %>
+    <%= form.label :type_group %>
+     <%= form.select :type_group, Group.type_groups.keys %>
   </div>
 
   <div class="actions">
