@@ -26,9 +26,13 @@
       <th><strong>Max Duration:</strong></th>
       <td><%= @group.max_duration %></td>
     </tr>
+      <tr>
+      <th><strong>Crews</strong></th>
+      <td><%= @group.get_crews%></td>
+    </tr>
   </tbody>
 </table>
 <a href="<%=  group_concierts_path(@group) %>" class="btn btn-success text-white">View All Concierts</a>
-<a href="<%= edit_group_path(@group) %>" class="btn btn-warning text-white">Edit Group</a>
+<a href="<%= group_crews_path(@group) %>" class="btn btn-warning text-white">View All Crews</a>
 <a href="<%= groups_path %>" class="btn btn-primary text-white">Back</a>
 
