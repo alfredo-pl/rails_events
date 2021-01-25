@@ -12,8 +12,14 @@ class Group < ApplicationRecord
     end
     #first date
     def date_debut
+        no = "No ha debutado"
        debut =Conciert.references(:groups).where(group_id: id).order(date: :asc).first
-       debut.date
+       if debut.nil?
+        no
+       else
+        debut.date
+       end
+
     end
     #quantity concierts
     def cant_concierts
@@ -31,16 +37,42 @@ class Group < ApplicationRecord
         Conciert.references(:groups).where(group_id: id).where(date: time..t).count
     end
     def last_conciert
+        no = "No tiene concierto"
         last=Conciert.references(:groups).where(group_id: id).order(date: :desc).first
-        last.date.strftime("%Y-%B-%A")
+        if last.nil?
+            no
+        else
+            last.date.strftime("%Y-%B-%A")
+        end
     end
 
     def max_people
+        no = "0"
         max = Conciert.references(:groups).where(group_id: id).pluck :people
-        max.max
+        if max.blank?
+            no
+        else
+            max.max
+        end
     end
     def max_duration
+        no = "0"
         duration = Conciert.references(:groups).where(group_id: id).pluck :duration
-        duration.max.strftime("%Hh:%Mm")
+        
+        if duration.blank?
+            no
+        else
+            duration.max.strftime("%Hh:%Mm")
+        end
+    end
+    def get_crews
+        no = "0"
+        crew= Crew.references(:groups).where(group_id: id).pluck :name
+        
+        if crew.blank?
+            no
+        else
+            crew.join(", ")
+        end
     end
 end
