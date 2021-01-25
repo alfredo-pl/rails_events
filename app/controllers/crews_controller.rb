@@ -4,32 +4,38 @@ class CrewsController < ApplicationController
   # GET /crews
   # GET /crews.json
   def index
-    @crews = Crew.all
+    @group = Group.find params[:group_id]
+    @crews = @group.crews
   end
 
   # GET /crews/1
   # GET /crews/1.json
   def show
+    @group = Group.find params[:group_id]
+    @crew = Crew.find(params[:id])
   end
 
   # GET /crews/new
   def new
+    @group = Group.find params[:group_id]
     @crew = Crew.new
-    @groups = Group.all.map{ |group| [group.name, group.id]}
   end
 
   # GET /crews/1/edit
   def edit
+    @group = Group.find params[:group_id]
+    @crew = Crew.find(params[:id])
   end
 
   # POST /crews
   # POST /crews.json
   def create
+    @group = Group.find params[:group_id]
     @crew = Crew.new(crew_params)
-
+    @crew.group = @group
     respond_to do |format|
       if @crew.save
-        format.html { redirect_to @crew, notice: "Crew was successfully created." }
+        format.html { redirect_to group_crew_path(@group,@crew), notice: "Crew was successfully created." }
         format.json { render :show, status: :created, location: @crew }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,9 +47,11 @@ class CrewsController < ApplicationController
   # PATCH/PUT /crews/1
   # PATCH/PUT /crews/1.json
   def update
+    @group = Group.find params[:group_id]
+    @crew = Crew.find(params[:id])
     respond_to do |format|
-      if @crew.update(crew_params)
-        format.html { redirect_to @crew, notice: "Crew was successfully updated." }
+      if @crew.update(crew_params.merge(group: @group))
+        format.html { redirect_to group_crew_path(@group, @crew) , notice: "Crew was successfully updated." }
         format.json { render :show, status: :ok, location: @crew }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,9 +63,10 @@ class CrewsController < ApplicationController
   # DELETE /crews/1
   # DELETE /crews/1.json
   def destroy
+    @crew = Crew.find(params[:id])
     @crew.destroy
     respond_to do |format|
-      format.html { redirect_to crews_url, notice: "Crew was successfully destroyed." }
+      format.html { redirect_to group_crews_url, notice: "Crew was successfully destroyed." }
       format.json { head :no_content }
     end
   end
