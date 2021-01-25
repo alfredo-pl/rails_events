@@ -32,7 +32,7 @@ class Group < ApplicationRecord
     end
     def last_conciert
         last=Conciert.references(:groups).where(group_id: id).order(date: :desc).first
-        last.date
+        last.date.strftime("%Y-%B-%A")
     end
 
     def max_people
