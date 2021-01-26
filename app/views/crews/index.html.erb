@@ -16,7 +16,7 @@
         <td><%= crew.name %></td>
         <td><%= link_to 'Show', group_crew_path(@group,crew)  %></td>
         <td><%= link_to 'Edit', edit_group_crew_path(@group,crew) %></td>
-        <td><%= link_to 'Destroy', group_conciert_path(@group, crew), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', group_crew_path(@group, crew), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
